@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { auth, database } from "./firebase";
 import CurrentUser from "./CurrentUser";
 import SignIn from "./SignIn";
+//import DragAndDropBox from "./DragAndDropBox";
+import DragAndDropFiles from "./DragAndDropFiles";
+
 import "./Application.css";
 
 class Application extends Component {
@@ -24,10 +27,12 @@ class Application extends Component {
         </header>
         <div>
           {!currentUser && <SignIn />}
-          { currentUser && (
+          {currentUser && (
             <div>
               <h1>we are loged in </h1>
               <CurrentUser user={currentUser} />
+
+              <DragAndDropFiles />
             </div>
           )}
         </div>
