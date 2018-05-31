@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { auth, database } from "./firebase";
+import { auth, db } from "./firebase";
 import CurrentUser from "./CurrentUser";
 import SignIn from "./SignIn";
 //import DragAndDropBox from "./DragAndDropBox";
@@ -19,6 +19,22 @@ class Application extends Component {
   }
 
   render() {
+    if (this.state.currentUser !== null) {
+      const userRef = db
+        .collection("photographers")
+        .doc(this.state.currentUser.uid);
+      userRef.get().then(user => {
+        console.log("*******", user);
+        if (!user.exists) {
+          return userRef.set({
+            displayName: this.state.currentUser.displayName,
+            email: this.state.currentUser.email,
+            imagesUrl: []
+          });
+        }
+      });
+    }
+
     const { currentUser } = this.state;
     return (
       <div className="Application">
@@ -31,8 +47,7 @@ class Application extends Component {
             <div>
               <h1>we are loged in </h1>
               <CurrentUser user={currentUser} />
-
-              <DragAndDropFiles />
+              <DragAndDropFiles user={currentUser} />
             </div>
           )}
         </div>

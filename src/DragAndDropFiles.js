@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import firebase from "./firebase";
-import FileUploader from "react-firebase-file-uploader";
+import { storage, db } from "./firebase";
 import "./DragAndDropFiles.css";
 
 export default class DragAndDropFiles extends Component {
@@ -11,17 +10,18 @@ export default class DragAndDropFiles extends Component {
   componentDidMount() {
     console.log("did mount");
     const dropArea = document.getElementById("drop-area");
-    const progressBar = document.getElementById("progress-bar");
+
     this.setState({
       dropArea: dropArea,
-      uploadProgress: [],
-      progressBar: progressBar
+      user: this.props.user
     });
     this.state.dropArea
       ? this.addEventListeners(this.state.dropArea)
       : console.log("not ready");
   }
   render() {
+    console.log("db", db);
+
     this.state.dropArea
       ? this.addEventListeners(this.state.dropArea)
       : console.log("not ready in render yet");
@@ -53,14 +53,36 @@ export default class DragAndDropFiles extends Component {
   }
 
   uploadFile = (file, i) => {
-    let url = `https://api.cloudinary.com/v1_1/sumbal/image/upload`;
-    let xhr = new XMLHttpRequest();
-    let formData = new FormData();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-    formData.append("upload_preset", "s8xhg5kj");
-    formData.append("file", file);
-    xhr.send(formData);
+    let storageRef = storage
+      .ref("/photographers-images")
+      .child(this.state.user.uid)
+      .child(file.name);
+    console.log("storage Ref:   ", storageRef);
+    storageRef
+      .put(file)
+      .then(onSnapshot => {
+        return onSnapshot.ref.getDownloadURL();
+      })
+      .then(url => {
+        const userRef = db.collection("photographers").doc(this.state.user.uid);
+        db
+          .runTransaction(transaction => {
+            // This code may get re-run multiple times if there are conflicts.
+            return transaction.get(userRef).then(doc => {
+              const imagesUrl = doc.data().imagesUrl;
+              imagesUrl.push(url);
+              transaction.update(userRef, {
+                imagesUrl: imagesUrl
+              });
+            });
+          })
+          .then(function() {
+            console.log("Transaction successfully committed!");
+          })
+          .catch(function(error) {
+            console.log("Transaction failed: ", error);
+          });
+      });
   };
 
   previewFile = file => {
