@@ -24,12 +24,11 @@ class Application extends Component {
         .collection("photographers")
         .doc(this.state.currentUser.uid);
       userRef.get().then(user => {
-        console.log("*******", user);
         if (!user.exists) {
           return userRef.set({
             displayName: this.state.currentUser.displayName,
             email: this.state.currentUser.email,
-            imagesUrl: []
+            uploadedImages: []
           });
         }
       });

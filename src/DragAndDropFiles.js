@@ -69,10 +69,10 @@ export default class DragAndDropFiles extends Component {
           .runTransaction(transaction => {
             // This code may get re-run multiple times if there are conflicts.
             return transaction.get(userRef).then(doc => {
-              const imagesUrl = doc.data().imagesUrl;
-              imagesUrl.push(url);
+              const uploadedImages = doc.data().uploadedImages;
+              uploadedImages.push(url);
               transaction.update(userRef, {
-                imagesUrl: imagesUrl
+                uploadedImages: uploadedImages
               });
             });
           })

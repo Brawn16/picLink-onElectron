@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-import config from "./config.js";
+import config from "./mikeConf.js";
 
 firebase.initializeApp(config);
 
