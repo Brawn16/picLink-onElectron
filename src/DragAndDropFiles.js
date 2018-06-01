@@ -8,7 +8,6 @@ export default class DragAndDropFiles extends Component {
   };
 
   componentDidMount() {
-    console.log("did mount");
     const dropArea = document.getElementById("drop-area");
 
     this.setState({
@@ -20,8 +19,6 @@ export default class DragAndDropFiles extends Component {
       : console.log("not ready");
   }
   render() {
-    console.log("db", db);
-
     this.state.dropArea
       ? this.addEventListeners(this.state.dropArea)
       : console.log("not ready in render yet");
@@ -57,7 +54,6 @@ export default class DragAndDropFiles extends Component {
       .ref("/photographers-images")
       .child(this.state.user.uid)
       .child(file.name);
-    console.log("storage Ref:   ", storageRef);
     storageRef
       .put(file)
       .then(onSnapshot => {
@@ -67,7 +63,6 @@ export default class DragAndDropFiles extends Component {
         const userRef = db.collection("photographers").doc(this.state.user.uid);
         db
           .runTransaction(transaction => {
-            // This code may get re-run multiple times if there are conflicts.
             return transaction.get(userRef).then(doc => {
               const uploadedImages = doc.data().uploadedImages;
               uploadedImages.push(url);
@@ -96,9 +91,6 @@ export default class DragAndDropFiles extends Component {
   };
 
   handleFiles = files => {
-    // console.log(e);
-    // const dt = e.dataTransfer;
-    // let files = dt.files;
     files = [...files];
     files.forEach(this.uploadFile);
     files.forEach(this.previewFile);
@@ -123,7 +115,6 @@ export default class DragAndDropFiles extends Component {
   };
 
   addEventListeners = dropArea => {
-    // Prevent default drag behaviors
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
       this.state.dropArea.addEventListener(
         eventName,
@@ -132,16 +123,14 @@ export default class DragAndDropFiles extends Component {
       );
     });
 
-    // Highlight drop area when item is dragged over it
     ["dragenter", "dragover"].forEach(eventName => {
-      this.state.dropArea.addEventListener(eventName, this.highlight, false); //
+      this.state.dropArea.addEventListener(eventName, this.highlight, false);
     });
 
     ["dragleave", "drop"].forEach(eventName => {
-      this.state.dropArea.addEventListener(eventName, this.unhighlight, false); //
+      this.state.dropArea.addEventListener(eventName, this.unhighlight, false);
     });
 
-    // Handle dropped files
-    this.state.dropArea.addEventListener("drop", this.handleDrop, false); //
+    this.state.dropArea.addEventListener("drop", this.handleDrop, false);
   };
 }

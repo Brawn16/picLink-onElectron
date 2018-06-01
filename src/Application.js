@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { auth, db } from "./firebase";
 import CurrentUser from "./CurrentUser";
 import SignIn from "./SignIn";
-//import DragAndDropBox from "./DragAndDropBox";
 import DragAndDropFiles from "./DragAndDropFiles";
 
 import "./Application.css";
