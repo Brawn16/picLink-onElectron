@@ -1,7 +1,11 @@
 {
-  "name": "Piclink",
+  "name": "piclink",
+  "author": "piclink",
+  "description": "photo-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
+  "license": "MIT",
   "dependencies": {
     "firebase": "^5.0.4",
     "lodash": "^4.17.4",
@@ -12,11 +16,12 @@
   "main": "src/main.js",
   "devDependencies": {
     "electron": "^2.0.2",
+    "electron-packager": "^12.1.0",
     "react-scripts": "0.9.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "electron-packager . electron-app --all --overwrite",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron": "electron ."

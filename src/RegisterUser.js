@@ -1,32 +1,33 @@
 import React, { Component } from "react";
 import { auth } from "./firebase";
 import firebase from "./firebase";
-class SignIn extends Component {
+class RegisterUser extends Component {
   state = {
-    register: false,
+    firstName: "",
+    lastName: "",
     emailField: "",
     passwordField: ""
   };
   render() {
     return (
-      <div className="SignIn">
+      <div className="SignUp">
         <div id="form-container" className=".container-fluid">
           <div id="form-elements" className="form-group">
-            {/* <input
-              type="text"
-              placeholder="firstName: "
-              className="form-control"
-              onChange={this.updateFirstName}
-              id="firstName"
-            />
-            
             <input
               type="text"
               placeholder="firstName: "
               className="form-control"
               onChange={this.updateFirstName}
               id="firstName"
-            /> */}
+            />
+
+            <input
+              type="text"
+              placeholder="firstName: "
+              className="form-control"
+              onChange={this.updateLastName}
+              id="lastName"
+            />
             <input
               type="text"
               placeholder="Email: "
@@ -44,22 +45,22 @@ class SignIn extends Component {
             <button
               className="btn btn-danger"
               id="sign-up-button"
-              onClick={this.handleSignUp}
+              onClick={this.handleSubmit}
             >
-              Register
-            </button>
-            <button
-              className="btn btn-primary"
-              id="sign-in-button"
-              onClick={this.handleSignIn}
-            >
-              Sign In
+              Submit
             </button>
           </div>
         </div>
       </div>
     );
   }
+
+  updateFirstName = event => {
+    this.setState({ firstName: event.target.value });
+  };
+  updateLastName = event => {
+    this.setState({ lastName: event.target.value });
+  };
 
   updateEmail = event => {
     this.setState({ emailField: event.target.value });
@@ -69,28 +70,29 @@ class SignIn extends Component {
     this.setState({ passwordField: event.target.value });
   };
 
-  handleSignUp = event => {
-    this.props.registerUser();
-
-    // firebase
-    //   .auth()
-    //   .createUserWithEmailAndPassword(
-    //     this.state.emailField,
-    //     this.state.passwordField
-    //   )
-    //   .then(response => {
-    //     console.log(`User created ${response}`);
-    //   });
-  };
-  handleSignIn = event => {
+  handleSubmit = event => {
     firebase
       .auth()
-      .signInWithEmailAndPassword(
-        this.state.emailField,
+      .createUserWithEmailAndPassword(
+        "photographer@piclink.com",
         this.state.passwordField
-      );
-    console.log(this.props.user);
+      )
+      .then(event => {
+        event.user.role = "photographer";
+
+        let user = firebase.auth().currentUser;
+        return Promise.all([
+          user.updateEmail(this.state.emailField),
+          user.updateProfile({
+            displayName: "photographer"
+          })
+        ]);
+      })
+      .then(res => this.props.registerComplete())
+      .catch(function(error) {
+        // An error happened.
+      });
   };
 }
 
-export default SignIn;
+export default RegisterUser;

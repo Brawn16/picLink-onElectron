@@ -3,11 +3,12 @@ import { auth, db } from "./firebase";
 import CurrentUser from "./CurrentUser";
 import SignIn from "./SignIn";
 import DragAndDropFiles from "./DragAndDropFiles";
-
+import RegisterUser from "./RegisterUser";
 import "./Application.css";
 
 class Application extends Component {
   state = {
+    register: false,
     currentUser: null
   };
 
@@ -18,20 +19,22 @@ class Application extends Component {
   }
 
   render() {
-    if (this.state.currentUser !== null) {
-      const userRef = db
-        .collection("photographers")
-        .doc(this.state.currentUser.uid);
-      userRef.get().then(user => {
-        if (!user.exists) {
-          return userRef.set({
-            displayName: this.state.currentUser.displayName,
-            email: this.state.currentUser.email,
-            uploadedImages: []
-          });
-        }
-      });
-    }
+    // if (this.state.currentUser !== null) {
+    //   const userRef = db
+    //     .collection("photographers")
+    //     .doc(this.state.currentUser.uid);
+    //   userRef.get().then(user => {
+    //     console.log("Currenyt user", user);
+    //     if (!user.exists) {
+    //       return userRef.set({
+    //         displayName: this.state.currentUser.displayName,
+    //         email: this.state.currentUser.email,
+    //         phoneNumber: this.state.currentUser.phoneNumber,
+    //         uploadedImages: []
+    //       });
+    //     }
+    //   });
+    // }
 
     const { currentUser } = this.state;
     return (
@@ -40,10 +43,17 @@ class Application extends Component {
           <h1>PicLink Photographer App</h1>
         </header>
         <div>
-          {!currentUser && <SignIn />}
+          {this.state.register ? (
+            <RegisterUser registerComplete={this.registerComplete} />
+          ) : null}
+          {!currentUser && (
+            <SignIn
+              user={this.state.currentUser}
+              registerUser={this.registerUser}
+            />
+          )}
           {currentUser && (
             <div>
-              <h1>we are loged in </h1>
               <CurrentUser user={currentUser} />
               <DragAndDropFiles user={currentUser} />
             </div>
@@ -52,6 +62,12 @@ class Application extends Component {
       </div>
     );
   }
+  registerUser = () => {
+    this.setState({ register: true });
+  };
+  registerComplete = () => {
+    this.setState({ register: false });
+  };
 }
 
 export default Application;

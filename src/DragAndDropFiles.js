@@ -51,33 +51,34 @@ export default class DragAndDropFiles extends Component {
 
   uploadFile = (file, i) => {
     let storageRef = storage
-      .ref("/photographers-images")
+      .ref("/photographers")
       .child(this.state.user.uid)
       .child(file.name);
-    storageRef
-      .put(file)
-      .then(onSnapshot => {
-        return onSnapshot.ref.getDownloadURL();
-      })
-      .then(url => {
-        const userRef = db.collection("photographers").doc(this.state.user.uid);
-        db
-          .runTransaction(transaction => {
-            return transaction.get(userRef).then(doc => {
-              const uploadedImages = doc.data().uploadedImages;
-              uploadedImages.push(url);
-              transaction.update(userRef, {
-                uploadedImages: uploadedImages
-              });
-            });
-          })
-          .then(function() {
-            console.log("Transaction successfully committed!");
-          })
-          .catch(function(error) {
-            console.log("Transaction failed: ", error);
-          });
-      });
+    storageRef.put(file).then(res => {
+      console.log("file uploaded");
+    });
+    // .then(onSnapshot => {
+    //   //return onSnapshot.ref.getDownloadURL();
+    // })
+    // .then(url => {
+    //   const userRef = db.collection("photographers").doc(this.state.user.uid);
+    //   db
+    //     .runTransaction(transaction => {
+    //       return transaction.get(userRef).then(doc => {
+    //         const uploadedImages = doc.data().uploadedImages;
+    //         uploadedImages.push(url);
+    //         transaction.update(userRef, {
+    //           uploadedImages: uploadedImages
+    //         });
+    //       });
+    //     })
+    //     .then(function() {
+    //       console.log("Transaction successfully committed!");
+    //     })
+    //     .catch(function(error) {
+    //       console.log("Transaction failed: ", error);
+    //     });
+    // });
   };
 
   previewFile = file => {
