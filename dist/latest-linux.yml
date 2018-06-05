@@ -1,9 +1,0 @@
-version: 0.1.0
-files:
-  - url: piclink-0.1.0-x86_64.AppImage
-    sha512: zLs/x8Vu8ziARlGctvBaEzgI0I//2ISz0ICOaBJYgXla4ZKc+cO+16ACwG8TPDg2kSWrn9Hj4NED0LW2RHyTIQ==
-    size: 69137703
-    blockMapSize: 73323
-path: piclink-0.1.0-x86_64.AppImage
-sha512: zLs/x8Vu8ziARlGctvBaEzgI0I//2ISz0ICOaBJYgXla4ZKc+cO+16ACwG8TPDg2kSWrn9Hj4NED0LW2RHyTIQ==
-releaseDate: '2018-06-04T21:35:43.183Z'
