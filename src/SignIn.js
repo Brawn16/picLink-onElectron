@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { auth } from "./firebase";
 //import firebase from "./firebase";
-import "./SignIn.css";
+import "./Signin.css";
 
 class SignIn extends Component {
   state = {
@@ -12,40 +12,46 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className="SignIn">
-        <div id="form-container" className=".container-fluid">
-          <div id="form-elements" className="form-group">
-            <input
-              type="text"
-              placeholder="Email: "
-              className="form-control"
-              onChange={this.updateEmail}
-              id="email"
-            />
-            <input
-              type="password"
-              placeholder="Password: "
-              className="form-control"
-              onChange={this.updatePassword}
-              id="password"
-            />
-            <button
-              className="btn btn-danger centre"
-              id="sign-up-button"
-              onClick={this.handleSignUp}
-            >
-              Register
+      <div>
+
+        <div id="form-container" className=".container-fluid signin text-center">
+          <div id="FormSignIn">
+            <div id="form-elements" className="form-group">
+              <div className="header"> </div>
+              <input
+                type="text"
+                placeholder="Email: "
+                className="form-control"
+                onChange={this.updateEmail}
+                id="email"
+              />
+              <input
+                type="password"
+                placeholder="Password: "
+                className="form-control"
+                onChange={this.updatePassword}
+                id="password"
+              />
+              <div className="center-button">
+                <button
+                  className="btn-outline-info btn-dark"
+                  id="sign-up-button"
+                  onClick={this.handleSignUp}
+                >
+                  Register
             </button>
-            <button
-              className="btn btn-primary centre"
-              id="sign-in-button"
-              onClick={this.handleSignIn}
-            >
-              Sign In
+                <button
+                  className="btn-outline-info btn-dark"
+                  id="sign-in-button"
+                  onClick={this.handleSignIn}
+                >
+                  Sign In
             </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 

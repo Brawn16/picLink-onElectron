@@ -4,7 +4,6 @@ import CurrentUser from "./CurrentUser";
 import SignIn from "./SignIn";
 import DragAndDropFiles from "./DragAndDropFiles";
 import RegisterUser from "./RegisterUser";
-import "./Application.css";
 
 class Application extends Component {
   state = {
@@ -22,9 +21,6 @@ class Application extends Component {
     const { currentUser } = this.state;
     return (
       <div className="Application">
-        <header className="Application--header">
-          <h1>PicLink Photographer DropBox</h1>
-        </header>
         <div>
           {this.state.register ? (
             <RegisterUser registerComplete={this.registerComplete} />
@@ -34,6 +30,7 @@ class Application extends Component {
               <SignIn
                 user={this.state.currentUser}
                 registerUser={this.registerUser}
+                id="SignIn"
               />
             )}
           {currentUser && (

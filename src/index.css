@@ -31,6 +31,8 @@ button, input[type="submit"], .button {
   outline: none;
   padding: 0.5rem 1rem;
   transition: 0.2s all;
+  margin-bottom: 5px;
+
 }
 
 @media screen and (max-width: 480px) {
@@ -38,6 +40,7 @@ button, input[type="submit"], .button {
     display: block;
     margin-bottom: 10px;
     width: 100%;
+ 
   }
 }
 
@@ -117,8 +120,16 @@ button.small, input[type="submit"].small, .button.small {
 }
 
 input:not([type="submit"]) {
-  border: 1px solid #ccc;
+  margin: 0 auto;
+  border: 1px solid #3ce5bb;
   margin-bottom: 0.5em;
   padding: 1em 0.5em;
-  width: 100%;
+  height: 20px;
+  width: 90%;
+
 }
+
+.form-control:focus {
+
+  box-shadow: inset 0 1px 1px rgba(177, 240, 180, 0.075), 0 0 8px rgba(14, 124, 82, 0.6);
+ }

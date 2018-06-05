@@ -1,26 +1,24 @@
+
 #form-elements {
-  position: absolute;
+ background-color: whitesmoke;
   margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 300px;
-  height: 300px;
+  margin-top: 295px;
+  margin-left: 260px;
+  width: 295px;
+  border-radius: 20px;
 }
 
 .form-control {
-  width: 300px;
+  width: 230px;
+
 }
 
 head,
 html,
 body,
-div {
-  background-color: white;
-  text-align: center;
-}
+div 
 
 .centre {
   margin: 0 auto;
 }
+

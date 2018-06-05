@@ -9,7 +9,7 @@ let mainWindow;
 const autoUpdater = require("electron-updater").autoUpdater;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 900, height: 680 });
+  mainWindow = new BrowserWindow({ width: 800, height: 580, frame: false });
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
@@ -50,7 +50,7 @@ function showUpdateNotification(it) {
       closeLabel: "Okay",
       actions: restartNowAction
     },
-    function(err, response, metadata) {
+    function (err, response, metadata) {
       if (err) throw err;
       if (metadata.activationValue !== restartNowAction) {
         return;

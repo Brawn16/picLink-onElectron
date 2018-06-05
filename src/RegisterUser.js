@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { auth } from "./firebase";
 import firebase from "./firebase";
+import "./Signin.css";
 class RegisterUser extends Component {
   state = {
     firstName: "",
@@ -10,8 +11,8 @@ class RegisterUser extends Component {
   };
   render() {
     return (
-      <div className="SignUp">
-        <div id="form-container" className=".container-fluid">
+      <div>
+        <div id="form-container" className=".container-fluid register">
           <div id="form-elements" className="form-group">
             <input
               type="text"
@@ -43,7 +44,7 @@ class RegisterUser extends Component {
               id="password"
             />
             <button
-              className="btn btn-danger"
+              className="btn-outline-light btn-light"
               id="sign-up-button"
               onClick={this.handleSubmit}
             >
@@ -87,7 +88,7 @@ class RegisterUser extends Component {
           ]);
         })
         .then(res => this.props.registerComplete())
-        .catch(function(error) {
+        .catch(function (error) {
           // An error happened.
         });
     } else {
