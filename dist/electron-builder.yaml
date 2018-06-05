@@ -1,0 +1,14 @@
+directories:
+  output: dist
+  buildResources: assets
+files:
+  - build/**/*
+  - node_modules/**/*
+  - package.json
+extraMetadata:
+  main: build/main.js
+appId: io.example.picLink-onElectron
+publish:
+  provider: github
+extends: react-cra
+electronVersion: 2.0.2

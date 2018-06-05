@@ -15,7 +15,7 @@ class RegisterUser extends Component {
           <div id="form-elements" className="form-group">
             <input
               type="text"
-              placeholder="firstName: "
+              placeholder="First Name: "
               className="form-control"
               onChange={this.updateFirstName}
               id="firstName"
@@ -23,7 +23,7 @@ class RegisterUser extends Component {
 
             <input
               type="text"
-              placeholder="firstName: "
+              placeholder="Last Name: "
               className="form-control"
               onChange={this.updateLastName}
               id="lastName"
@@ -36,7 +36,7 @@ class RegisterUser extends Component {
               id="email"
             />
             <input
-              type="password"
+              type="Password"
               placeholder="Password: "
               className="form-control"
               onChange={this.updatePassword}
@@ -71,27 +71,37 @@ class RegisterUser extends Component {
   };
 
   handleSubmit = event => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(
-        "photographer@piclink.com",
-        this.state.passwordField
-      )
-      .then(event => {
-        event.user.role = "photographer";
+    if (this.formComplete()) {
+      auth
+        .createUserWithEmailAndPassword(
+          "photographer@piclink.com",
+          this.state.passwordField
+        )
+        .then(event => {
+          let user = firebase.auth().currentUser;
+          return Promise.all([
+            user.updateEmail(this.state.emailField),
+            user.updateProfile({
+              displayName: `${this.state.firstName} ${this.state.lastName}`
+            })
+          ]);
+        })
+        .then(res => this.props.registerComplete())
+        .catch(function(error) {
+          // An error happened.
+        });
+    } else {
+      console.log("form not completed");
+    }
+  };
 
-        let user = firebase.auth().currentUser;
-        return Promise.all([
-          user.updateEmail(this.state.emailField),
-          user.updateProfile({
-            displayName: "photographer"
-          })
-        ]);
-      })
-      .then(res => this.props.registerComplete())
-      .catch(function(error) {
-        // An error happened.
-      });
+  formComplete = () => {
+    return (
+      this.state.firstName !== "" &&
+      this.state.lastName !== "" &&
+      this.state.emailField !== "" &&
+      this.state.passwordField !== ""
+    );
   };
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { storage, db } from "./firebase";
+import { storage } from "./firebase";
 import "./DragAndDropFiles.css";
 
 export default class DragAndDropFiles extends Component {
@@ -9,7 +9,6 @@ export default class DragAndDropFiles extends Component {
 
   componentDidMount() {
     const dropArea = document.getElementById("drop-area");
-
     this.setState({
       dropArea: dropArea,
       user: this.props.user
@@ -57,28 +56,6 @@ export default class DragAndDropFiles extends Component {
     storageRef.put(file).then(res => {
       console.log("file uploaded");
     });
-    // .then(onSnapshot => {
-    //   //return onSnapshot.ref.getDownloadURL();
-    // })
-    // .then(url => {
-    //   const userRef = db.collection("photographers").doc(this.state.user.uid);
-    //   db
-    //     .runTransaction(transaction => {
-    //       return transaction.get(userRef).then(doc => {
-    //         const uploadedImages = doc.data().uploadedImages;
-    //         uploadedImages.push(url);
-    //         transaction.update(userRef, {
-    //           uploadedImages: uploadedImages
-    //         });
-    //       });
-    //     })
-    //     .then(function() {
-    //       console.log("Transaction successfully committed!");
-    //     })
-    //     .catch(function(error) {
-    //       console.log("Transaction failed: ", error);
-    //     });
-    // });
   };
 
   previewFile = file => {
@@ -96,6 +73,7 @@ export default class DragAndDropFiles extends Component {
     files.forEach(this.uploadFile);
     files.forEach(this.previewFile);
   };
+
   preventDefaults = e => {
     e.preventDefault();
     e.stopPropagation();
