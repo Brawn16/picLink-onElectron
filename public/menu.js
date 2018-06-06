@@ -1,5 +1,12 @@
 module.exports = [
     {
+        label: 'Electron',
+        submenu: [
+            { role: 'quit' }
+        ]
+    },
+    {
+
         label: 'Edit',
         submenu: [
             { role: 'undo' },

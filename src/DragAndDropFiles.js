@@ -24,25 +24,27 @@ export default class DragAndDropFiles extends Component {
 
     return (
       <div>
-        <div id="drop-area">
-          <form className="my-form">
-            <p>
-              Upload multiple files with the file dialog or by dragging and
-              dropping images onto the dashed region
+        <div class="row">
+          <div id="drop-area" className="card example-1 scrollbar-dusty-grass">
+            <form className="my-form">
+              <p>
+                Upload multiple files with the file dialog or by dragging and
+                dropping images onto the dashed region
             </p>
-            <input
-              type="file"
-              id="fileElem"
-              multiple
-              accept="image/*"
-              onChange={e => this.handleFiles(e.target.files)}
-            />
-            <label className="btn btn-outline-info btn-dark" htmlFor="fileElem">
-              Select some files
+              <input
+                type="file"
+                id="fileElem"
+                multiple
+                accept="image/*"
+                onChange={e => this.handleFiles(e.target.files)}
+              />
+              <label className="btn btn-outline-info btn-dark" htmlFor="fileElem">
+                Select some files
             </label>
-          </form>
+            </form>
 
-          <div id="gallery" />
+            <div id="gallery" />
+          </div>
         </div>
       </div>
     );
@@ -61,7 +63,7 @@ export default class DragAndDropFiles extends Component {
   previewFile = file => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onloadend = function() {
+    reader.onloadend = function () {
       let img = document.createElement("img");
       img.src = reader.result;
       document.getElementById("gallery").appendChild(img);
