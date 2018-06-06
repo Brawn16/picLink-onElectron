@@ -19,9 +19,18 @@
   background-position: center center;
 }
 
-
+.Application {
+  background-image: url("img/draganddrop.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: -1;
+  width: 100%;
+  height: 110%;
+  position: absolute;
+}
 .btn-dark {
-  opacity: .93;
+  opacity: 0.93;
   background-color: white;
 
   border-color: #3ce5bb;

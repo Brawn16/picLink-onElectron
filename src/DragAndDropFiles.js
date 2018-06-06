@@ -10,7 +10,8 @@ export default class DragAndDropFiles extends Component {
   componentDidMount() {
     const dropArea = document.getElementById("drop-area");
     this.setState({
-      dropArea: dropArea
+      dropArea: dropArea,
+      user: this.props.user
     });
     this.state.dropArea
       ? this.addEventListeners(this.state.dropArea)

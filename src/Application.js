@@ -33,7 +33,7 @@ class Application extends Component {
               />
             )}
           {currentUser && (
-            <div>
+            <div className="upload-images">
               <CurrentUser user={currentUser} />
               <DragAndDropFiles user={currentUser} />
             </div>

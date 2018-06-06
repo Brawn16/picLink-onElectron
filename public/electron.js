@@ -4,17 +4,19 @@ const url = require("url");
 const isDev = require("electron-is-dev");
 const notifier = require("node-notifier");
 
-
-
 let mainWindow;
 //create app menu
-let mainMenu = Menu.buildFromTemplate(require('./menu.js'));
+let mainMenu = Menu.buildFromTemplate(require("./menu.js"));
 
 const autoUpdater = require("electron-updater").autoUpdater;
 
 function createWindow() {
-
-  mainWindow = new BrowserWindow({ width: 800, height: 580, frame: false });
+  mainWindow = new BrowserWindow({
+    width: 1024,
+    height: 800,
+    frame: false,
+    icon: __dirname + "/img/logo.png"
+  });
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
@@ -55,7 +57,7 @@ function showUpdateNotification(it) {
       closeLabel: "Okay",
       actions: restartNowAction
     },
-    function (err, response, metadata) {
+    function(err, response, metadata) {
       if (err) throw err;
       if (metadata.activationValue !== restartNowAction) {
         return;
