@@ -3,18 +3,23 @@ import { auth } from "./firebase";
 import "./CurrentUser.css";
 
 const CurrentUser = ({ user }) => {
-  console.log('this is the user data',user);
+  console.log("this is the user data", user);
   return (
-    <div className="CurrentUser">
-      <img
-        className="CurrentUser--photo"
-        src={user.photoURL}
-        alt={user.displayName}
-      />
-      <div className="CurrentUser--identification">
-        <h3>{user.displayName}</h3>
-        <p>{user.email}</p>
-        <button onClick={() => auth.signOut()}>Sign Out</button>
+    <div>
+      <div className="header"> </div>
+      <div className="CurrentUser text-center">
+        <div>
+          <div className="CurrentUser--identification text-center">
+            <h3>{user.displayName}</h3>
+            <p>{user.email}</p>
+            <button
+              className="btn-outline-info btn-dark"
+              onClick={() => auth.signOut()}
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

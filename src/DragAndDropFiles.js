@@ -10,8 +10,7 @@ export default class DragAndDropFiles extends Component {
   componentDidMount() {
     const dropArea = document.getElementById("drop-area");
     this.setState({
-      dropArea: dropArea,
-      user: this.props.user
+      dropArea: dropArea
     });
     this.state.dropArea
       ? this.addEventListeners(this.state.dropArea)
@@ -37,7 +36,7 @@ export default class DragAndDropFiles extends Component {
               accept="image/*"
               onChange={e => this.handleFiles(e.target.files)}
             />
-            <label className="button" htmlFor="fileElem">
+            <label className="btn btn-outline-info btn-dark" htmlFor="fileElem">
               Select some files
             </label>
           </form>

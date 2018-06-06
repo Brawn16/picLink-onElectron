@@ -1,7 +1,5 @@
 .signin {
-  margin: 0 auto;
-  margin-top: -15px;
-  background-image: url('img/5.jpg');
+  background-image: url("img/team4.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -9,34 +7,23 @@
   height: 110%;
   position: absolute;
 }
-.register {
-  margin: 0;
-  width: 1000px;
-  height: 1000px;
-}
-/* this id is for the from in the sign up page
-#FormSignIn {
-
-}
-*/
 
 .header {
   display: block;
   margin: 0 auto;
-  height: 70px;
-  width: 250px;
-  background-image: url('img/logo.png');
+  height: 100px;
+  width: 300px;
+  background-image: url("img/logo.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-.btn-outline-info, 
+.btn-outline-info,
 .btn-dark {
   color: #3ce5bb;
-  border-color: #3ce5bb
-};
-
+  border-color: #3ce5bb;
+}
 
 .btn-outline-info:hover {
   background-color: #3ce5bb;
@@ -47,14 +34,13 @@
   background-color: #3ce5bb;
   border-color: #3ce5bb;
   color: black;
-};
+}
 
 input:on-focus {
-  background-color:#3ce5bb;
+  background-color: #3ce5bb;
   color: black;
 }
 
 button {
   padding: 2px;
 }
-

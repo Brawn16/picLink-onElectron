@@ -7,16 +7,19 @@
 }
 
 #drop-area {
-  border: 2px dashed #ccc;
+  margin: 0 auto;
+  border: 4px dashed #ccc;
   border-radius: 20px;
-  width: 100%;
-
+  width: 80%;
   font-family: sans-serif;
-  margin: 100px auto;
-  padding: 20px;
+  margin: 45px auto;
+  padding: 30px;
+  text-align: center;
 }
+
 #drop-area.highlight {
-  border-color: purple;
+  /* border-color: purple; */
+  border-color: #3ce5bb;
 }
 p {
   margin-top: 0;
@@ -33,17 +36,10 @@ p {
   margin-right: 10px;
   vertical-align: middle;
 }
-.button {
-  display: inline-block;
-  padding: 10px;
-  background: #ccc;
-  cursor: pointer;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+label {
+  align-content: center;
 }
-.button:hover {
-  background: #ddd;
-}
+
 #fileElem {
   display: none;
 }

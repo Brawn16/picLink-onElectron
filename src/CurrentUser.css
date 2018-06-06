@@ -1,15 +1,9 @@
 .CurrentUser {
-  border: 1px solid #ccc;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .CurrentUser--identification {
   padding: 1em;
   flex: 1;
 }
-
-.CurrentUser--photo {
-  max-height: 150px;
-}
-

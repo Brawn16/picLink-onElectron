@@ -13,11 +13,13 @@ class SignIn extends Component {
   render() {
     return (
       <div>
-
-        <div id="form-container" className=".container-fluid signin text-center">
+        <div
+          id="form-container"
+          className=".container-fluid signin text-center"
+        >
+          <div className="header"> </div>
           <div id="FormSignIn">
             <div id="form-elements" className="form-group">
-              <div className="header"> </div>
               <input
                 type="text"
                 placeholder="Email: "
@@ -39,19 +41,19 @@ class SignIn extends Component {
                   onClick={this.handleSignUp}
                 >
                   Register
-            </button>
+                </button>
                 <button
                   className="btn-outline-info btn-dark"
                   id="sign-in-button"
                   onClick={this.handleSignIn}
                 >
                   Sign In
-            </button>
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { auth } from "./firebase";
 import firebase from "./firebase";
-import "./Signin.css";
+import "./RegisterUser.css";
+
 class RegisterUser extends Component {
   state = {
     firstName: "",
@@ -12,8 +13,12 @@ class RegisterUser extends Component {
   render() {
     return (
       <div>
-        <div id="form-container" className=".container-fluid register">
-          <div id="form-elements" className="form-group">
+        <div
+          id="form-container"
+          className=".container-fluid register text-center"
+        >
+          <div className="header"> </div>
+          <div id="form-elements-register-user" className="form-group">
             <input
               type="text"
               placeholder="First Name: "
@@ -44,7 +49,7 @@ class RegisterUser extends Component {
               id="password"
             />
             <button
-              className="btn-outline-light btn-light"
+              className="btn btn-outline-info btn-dark"
               id="sign-up-button"
               onClick={this.handleSubmit}
             >
@@ -88,7 +93,7 @@ class RegisterUser extends Component {
           ]);
         })
         .then(res => this.props.registerComplete())
-        .catch(function (error) {
+        .catch(function(error) {
           // An error happened.
         });
     } else {

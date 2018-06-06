@@ -30,7 +30,6 @@ class Application extends Component {
               <SignIn
                 user={this.state.currentUser}
                 registerUser={this.registerUser}
-                id="SignIn"
               />
             )}
           {currentUser && (
