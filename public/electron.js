@@ -6,9 +6,14 @@ const notifier = require("node-notifier");
 
 let mainWindow;
 //create app menu
+
+
+
 let mainMenu = Menu.buildFromTemplate(require("./menu.js"));
 
 const autoUpdater = require("electron-updater").autoUpdater;
+
+
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -27,7 +32,7 @@ function createWindow() {
   initAutoUpdate();
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 }
 
 function initAutoUpdate() {
@@ -58,7 +63,7 @@ function showUpdateNotification(it) {
       closeLabel: "Okay",
       actions: restartNowAction
     },
-    function(err, response, metadata) {
+    function (err, response, metadata) {
       if (err) throw err;
       if (metadata.activationValue !== restartNowAction) {
         return;
@@ -71,6 +76,10 @@ function showUpdateNotification(it) {
 app.on("ready", () => {
   createWindow();
   Menu.setApplicationMenu(mainMenu);
+});
+
+app.on('before-quit', () => {
+  console.log('App is about to quit.!');
 });
 
 app.on("window-all-closed", () => {
