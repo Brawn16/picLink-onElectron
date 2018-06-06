@@ -15,6 +15,7 @@ function createWindow() {
     width: 1024,
     height: 800,
     frame: false,
+    resizable: false,
     icon: __dirname + "/img/logo.png"
   });
   mainWindow.loadURL(
