@@ -19,9 +19,11 @@
   background-position: center center;
 }
 
-.btn-outline-info,
+
 .btn-dark {
-  color: #3ce5bb;
+  opacity: .93;
+  background-color: white;
+
   border-color: #3ce5bb;
 }
 

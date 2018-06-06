@@ -3,14 +3,6 @@
   margin-top: 250px;
   width: 300px;
 }
-
-.form-control {
-  width: 300px;
-}
-
-head,
-html,
-body,
-div .centre {
-  margin: 0 auto;
+.btn {
+  width: 42%;
 }

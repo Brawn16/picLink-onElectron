@@ -1,14 +1,19 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Menu, MenuItem } = require("electron");
 const path = require("path");
 const url = require("url");
 const isDev = require("electron-is-dev");
 const notifier = require("node-notifier");
 
+
+
 let mainWindow;
+//create app menu
+let mainMenu = Menu.buildFromTemplate(require('./menu.js'));
 
 const autoUpdater = require("electron-updater").autoUpdater;
 
 function createWindow() {
+
   mainWindow = new BrowserWindow({ width: 800, height: 580, frame: false });
   mainWindow.loadURL(
     isDev
@@ -60,7 +65,10 @@ function showUpdateNotification(it) {
   );
 }
 
-app.on("ready", createWindow);
+app.on("ready", () => {
+  createWindow();
+  Menu.setApplicationMenu(mainMenu);
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

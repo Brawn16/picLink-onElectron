@@ -36,14 +36,14 @@ class SignIn extends Component {
               />
               <div className="center-button">
                 <button
-                  className="btn-outline-info btn-dark"
+                  className="btn btn-outline-dark btn-dark"
                   id="sign-up-button"
                   onClick={this.handleSignUp}
                 >
                   Register
                 </button>
                 <button
-                  className="btn-outline-info btn-dark"
+                  className="btn btn-outline-dark btn-dark"
                   id="sign-in-button"
                   onClick={this.handleSignIn}
                 >

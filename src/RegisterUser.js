@@ -49,7 +49,7 @@ class RegisterUser extends Component {
               id="password"
             />
             <button
-              className="btn btn-outline-info btn-dark"
+              className="btn btn-outline-dark btn-dark"
               id="sign-up-button"
               onClick={this.handleSubmit}
             >
@@ -93,7 +93,7 @@ class RegisterUser extends Component {
           ]);
         })
         .then(res => this.props.registerComplete())
-        .catch(function(error) {
+        .catch(function (error) {
           // An error happened.
         });
     } else {
